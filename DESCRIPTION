@@ -1,0 +1,16 @@
+Package: GLFishStockR
+Title: Fetch Data From The Great Lakes Fish Stocking API
+Version: 0.0.0.9000
+Authors@R:
+    person("Adam","Cottrill", email = "adam.cottrill.@ontario.ca", role = c("aut", "cre"))
+Maintainer: Adam Cottrill <adam.cottrill@ontario.ca>    
+Description: The package provides a number of low level functions that
+    fetch data from the Great Lakes fish stocking database.
+Imports:
+        httr,
+        jsonlite
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
