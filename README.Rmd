@@ -1,0 +1,135 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# GLFishStockR
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The package provides a number of low level functions that fetch data
+    from the Great Lakes fish stocking database for further analayis
+    and reporting in R..
+
+
+## Example
+
+GLFishStocker provides a number of functions that can be use to fetch
+data from the Great Lakes Fish Stocking Database API (www.fsis.glfc.org)
+
+The functions in GLFishSocker expose methods that allow us to easily
+get data into R, including the lakes, contributing agencies, and
+associated management/spatial units.
+
+```{r example}
+library(GLFishStockR)
+## basic example code
+
+get_lakes();
+
+agencies <- get_agencies();
+head(agencies)
+
+mus <- get_management_units();
+head(mus)
+
+filters <- list(
+  "lake"="MI"
+)
+mus <- get_management_units(filters);
+head(mus)
+
+jurisdictions  <- get_jurisdictions()
+head(juridictions)
+
+
+filters <- list(
+  "lake"="MI"
+)
+jurisdictions  <- get_jurisdictions(filters)
+head(juridictions)
+
+
+get_state_provinces();
+
+get_state_provinces(list("country"="USA"));
+
+head(get_grid10s(filters));
+
+```
+
+We can get all of the species, strains and raw (detailed) strains too:
+
+
+```{r species_and_strains}
+
+species <- get_species();
+head(species)
+
+strains <- get_strains();
+head(strains)
+
+raw_strains  <- get_raw_strains();
+head(raw_strains)
+
+```
+We can fetch all of the values used for lifestages, marks, and yearling equivalent factors:
+
+```{r stocking_methods_and_lifestages}
+
+lifestages <- get_lifestages();
+head(lifestages)
+
+marks <- get_marks();
+head(marks)
+
+yreq <- get_yreq_factors();
+head(yreq)
+
+#we can get them for a single species or lifestage too
+get_yreq_factors(list(species="LAT"));
+
+```
+
+We can get stocking events based on a large number of attributes
+including (but not limited to lake, species, strain, agency,
+lifestage, stocking method, jursidiction, managment unit, or year.
+
+```{r stocking_events]}
+
+filters <- list(
+  "lake"="HU",
+  "species"=c("RBT","LAT", "BNT"),
+  "first_year" = 2012
+)
+
+events <- get_stocking_events(filters)
+nrow(events)
+head(events)
+
+```
+
+We can also find stocking events that were associatd with spefic coded
+wire tags, tag attriutes, or attributes of the stocked fish or stocking
+event.
+
+```{r cwts_events]}
+filters  <-  list(
+cwt_number='630157'
+)
+# this does not work as expected!! we need to return CWT SEQ here:
+cwt_events  <- get_cwts(filters)
+head(cwt_events)
+
+```
