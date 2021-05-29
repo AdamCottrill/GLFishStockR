@@ -5,7 +5,7 @@
 \title{Given a url submit the request and return the results as a
 dataframe.}
 \usage{
-api_to_dataframe(url, data = NULL, page = 0)
+api_to_dataframe(url, data = NULL, page = 0, recursive = TRUE)
 }
 \arguments{
 \item{url}{string}
@@ -13,6 +13,8 @@ api_to_dataframe(url, data = NULL, page = 0)
 \item{data}{dataframe}
 
 \item{page}{number}
+
+\item{recursive}{boolean}
 }
 \value{
 dataframe

@@ -23,7 +23,7 @@ optional filter list which can be used to return jurisdictions
 associated with a particular lake or state/province.
 }
 \details{
-See http://fsis.glfc.com/api/docs/#v1-common-jurisdiction-list for
+See http://fsis.glfc.com/api/public_urls/#v1-common-jurisdiction-list for
 the full list of available filter keys (query parameters)
 }
 \examples{

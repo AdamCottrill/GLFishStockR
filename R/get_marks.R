@@ -7,7 +7,7 @@
 ##' marks of a particular type (chemical, physical, thermal, dye,
 ##' uknown)
 ##'
-##' See http://fsis.glfc.com/api/docs/#v1-common-marks-list for the full list of
+##' See http://fsis.glfc.com/api/public_urls/#v1-common-marks-list for the full list of
 ##' available filter keys (query parameters)
 ##'
 ##' @param filter_list list

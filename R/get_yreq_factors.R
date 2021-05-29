@@ -12,7 +12,7 @@
 ##' get_yreq_factor() function takes an optional filter list which can be
 ##' used to return factors for a particular species or life stages.
 ##'
-##' See http://fsis.glfc.com/api/docs/#v1-common-marks-list for the full list of
+##' See http://fsis.glfc.com/api/public_urls/#v1-common-marks-list for the full list of
 ##' available filter keys (query parameters)
 ##'
 ##' @param filter_list list

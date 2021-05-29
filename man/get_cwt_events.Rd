@@ -13,16 +13,17 @@ get_cwt_events(filter_list = list())
 dataframe
 }
 \description{
-This function is a wrapper around api_to_dataframe
-and calls the api endpoint to retrieve Coded Wire Tag (cwt) stocking events
-the Great Lakes Fish Stocking database
-(www.fsis.glfc.org).  This function takes an
-optional filter list which can be used to return stocking event
-based on several attributes of either the cwt or the associated
-stocking event.
+This function is a wrapper around api_to_dataframe and calls the
+api endpoint to retrieve Coded Wire Tag (cwt) stocking events the
+Great Lakes Fish Stocking database (www.fsis.glfc.org).  This
+function takes an optional filter list which can be used to return
+stocking event based on several attributes of either the cwt or
+the associated stocking event. If no filter list is provided, only
+the first page of results are fetched from the api (and a warning
+is issued)
 }
 \details{
-See http://fsis.glfc.com/api/docs/#v1-common--list
+See http://fsis.glfc.com/api/api/public_urls/#stocking-get_cwt_events-list
 for the full list of available filter keys (query parameters)
 }
 \author{

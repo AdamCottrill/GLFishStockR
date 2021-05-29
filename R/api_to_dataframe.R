@@ -14,10 +14,11 @@
 ##' @param url string
 ##' @param data dataframe
 ##' @param page number
+##' @param recursive boolean
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
 
-api_to_dataframe <- function(url, data = NULL, page = 0) {
+api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
   maxPageCount <- 10
   response <- httr::GET(url)
   json <- httr::content(response, "text", encoding = "UTF-8")
@@ -41,7 +42,7 @@ api_to_dataframe <- function(url, data = NULL, page = 0) {
     }
 
     next_url <- payload$`next`
-    if (!is.null(next_url) && page < maxPageCount) {
+    if (!is.null(next_url) && page < maxPageCount && recursive) {
       data <- api_to_dataframe(next_url, data, page)
     }
     return(data)
