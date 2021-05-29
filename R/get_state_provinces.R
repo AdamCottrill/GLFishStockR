@@ -8,7 +8,7 @@
 ##' associated with a particular country.
 ##'
 ##' @param filter_list list
-##' 
+##'
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
 ##' @export
@@ -17,10 +17,12 @@
 ##' get_state_provinces()
 ##' get_state_provinces(list(country="CA"))
 ##'
-get_state_provinces <- function(filter_list=list()){
+get_state_provinces <- function(filter_list = list()) {
   query_string <- build_query_string(filter_list)
-  my_url <- sprintf("%s/common/state_province/%s",
+  my_url <- sprintf(
+    "%s/common/state_province/%s",
     get_root_url(),
-    query_string)
+    query_string
+  )
   return(api_to_dataframe(my_url))
 }

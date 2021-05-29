@@ -8,8 +8,7 @@
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return string
 ##'
-get_root_url <- function(){
-  #API_ROOT_URL <- "http://127.0.0.1:8000/api/v1"
-  API_ROOT_URL <- "http://192.168.1.167:8000/api/v1"
- return(API_ROOT_URL)
- }
+get_root_url <- function() {
+  API_ROOT_URL <- "http://127.0.0.1:8000/api/v1"
+  return(API_ROOT_URL)
+}

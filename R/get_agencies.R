@@ -10,8 +10,10 @@
 ##' @examples
 ##' get_agencies()
 
-get_agencies <- function(){
-  my_url <- sprintf("%s/common/agency/",
-    get_root_url())
+get_agencies <- function() {
+  my_url <- sprintf(
+    "%s/common/agency/",
+    get_root_url()
+  )
   return(api_to_dataframe(my_url))
 }

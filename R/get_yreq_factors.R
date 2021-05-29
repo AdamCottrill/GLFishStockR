@@ -16,7 +16,7 @@
 ##' available filter keys (query parameters)
 ##'
 ##' @param filter_list list
-##' 
+##'
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
 ##' @export
@@ -28,13 +28,12 @@
 ##' get_yreq_factors(list(lifestage="fry"))
 ##' get_yreq_factors(list(lifestage=c("fry", "ff")))
 
-get_yreq_factors <- function(filter_list=list()){
+get_yreq_factors <- function(filter_list = list()) {
   query_string <- build_query_string(filter_list)
-  my_url <- sprintf("%s/stocking/yearling_equivalent/%s",
+  my_url <- sprintf(
+    "%s/stocking/yearling_equivalent/%s",
     get_root_url(),
-    query_string)
+    query_string
+  )
   return(api_to_dataframe(my_url))
 }
-
-
-

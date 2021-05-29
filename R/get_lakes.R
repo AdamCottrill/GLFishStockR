@@ -8,8 +8,10 @@
 ##' @export
 ##' @examples
 ##' lakes <- get_lakes()
-get_lakes <- function(){
-  my_url <- sprintf("%s/common/lake/",
-    get_root_url())
+get_lakes <- function() {
+  my_url <- sprintf(
+    "%s/common/lake/",
+    get_root_url()
+  )
   return(api_to_dataframe(my_url))
 }

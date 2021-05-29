@@ -13,7 +13,7 @@
 ##' the full list of available filter keys (query parameters)
 ##'
 ##' @param filter_list list
-##' 
+##'
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
 ##' @export
@@ -23,13 +23,15 @@
 ##' get_jurisdictions(list(lake="HU"))
 ##' get_jurisdictions(list(stateprov="MI"))
 ##'
-get_jurisdictions <- function(filter_list=list()){
+get_jurisdictions <- function(filter_list = list()) {
   #
   query_string <- build_query_string(filter_list)
 
-  my_url <- sprintf("%s/common/jurisdiction/%s",
+  my_url <- sprintf(
+    "%s/common/jurisdiction/%s",
     get_root_url(),
-    query_string)
+    query_string
+  )
 
   return(api_to_dataframe(my_url))
 }

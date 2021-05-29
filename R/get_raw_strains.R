@@ -8,11 +8,11 @@
 ##' optional filter list which can be used to return raw strains
 ##' associated with a particular species or strain.
 ##'
-##' See http://fsis.glfc.com/api/docs/#v1-common-raw-strainraw-list for 
+##' See http://fsis.glfc.com/api/docs/#v1-common-raw-strainraw-list for
 ##' the full list of available filter keys (query parameters)
 ##'
 ##' @param filter_list list
-##' 
+##'
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
 ##' @export
@@ -22,11 +22,12 @@
 ##' get_raw_strains()
 ##' get_raw_strains(list(species="LAT"))
 ##' get_raw_strains(list(strain="SEN"))
-get_raw_strains <- function(filter_list=list()){
+get_raw_strains <- function(filter_list = list()) {
   query_string <- build_query_string(filter_list)
-  my_url <- sprintf("%s/common/strainraw/%s",
+  my_url <- sprintf(
+    "%s/common/strainraw/%s",
     get_root_url(),
-    query_string)
+    query_string
+  )
   return(api_to_dataframe(my_url))
 }
-

@@ -5,7 +5,7 @@
 ##' Great Lakes Fish Stocking database (www.fsis.glfc.org).  The
 ##' returned dataframe contains the abbreviation used for the
 ##' lifestage and a simple description.
-##' 
+##'
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
 ##' @export
@@ -13,11 +13,11 @@
 ##'
 ##' get_lifestages()
 ##'
-get_lifestages <- function(){
+get_lifestages <- function() {
   #
-  my_url <- sprintf("%s/stocking/lifestage/",
-    get_root_url())
+  my_url <- sprintf(
+    "%s/stocking/lifestage/",
+    get_root_url()
+  )
   return(api_to_dataframe(my_url))
 }
-
-

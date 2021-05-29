@@ -11,7 +11,7 @@
 ##' available filter keys (query parameters)
 ##'
 ##' @param filter_list list
-##' 
+##'
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
 ##' @export
@@ -21,10 +21,12 @@
 ##' get_grid10s(list(lake="ON"))
 ##' get_grid10s(list(mu_type="stat_dist"))
 ##'
-get_grid10s <- function(filter_list=list()){
+get_grid10s <- function(filter_list = list()) {
   query_string <- build_query_string(filter_list)
-  my_url <- sprintf("%s/common/grid10/%s",
+  my_url <- sprintf(
+    "%s/common/grid10/%s",
     get_root_url(),
-    query_string)
+    query_string
+  )
   return(api_to_dataframe(my_url))
 }

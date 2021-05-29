@@ -51,14 +51,14 @@ mus <- get_management_units(filters);
 head(mus)
 
 jurisdictions  <- get_jurisdictions()
-head(juridictions)
+head(jurisdictions)
 
 
 filters <- list(
   "lake"="MI"
 )
 jurisdictions  <- get_jurisdictions(filters)
-head(juridictions)
+head(jurisdictions)
 
 
 get_state_provinces();
@@ -113,8 +113,8 @@ filters <- list(
   "species"=c("RBT","LAT", "BNT"),
   "first_year" = 2012
 )
-
 events <- get_stocking_events(filters)
+
 nrow(events)
 head(events)
 
@@ -128,8 +128,8 @@ event.
 filters  <-  list(
 cwt_number='630157'
 )
-# this does not work as expected!! we need to return CWT SEQ here:
-cwt_events  <- get_cwts(filters)
+
+cwt_events  <- get_cwt_events(filters)
 head(cwt_events)
 
 ```

@@ -11,32 +11,27 @@
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return dataframe
 
-api_to_dataframe  <- function(url, data=NULL){
-
+api_to_dataframe <- function(url, data = NULL) {
   response <- httr::GET(url)
-  json <- httr::content(response, "text", encoding='UTF-8')
-  payload <- jsonlite::fromJSON(json, flatten=TRUE)
+  json <- httr::content(response, "text", encoding = "UTF-8")
+  payload <- jsonlite::fromJSON(json, flatten = TRUE)
 
-  if (!is.null(payload[['results']])) {
-
-    if(is.null(data)){
-      data  <-  payload$results
+  if (!is.null(payload[["results"]])) {
+    if (is.null(data)) {
+      data <- payload$results
     } else {
-      data  <-  rbind(data, payload$results)
+      data <- rbind(data, payload$results)
     }
 
     next_url <- payload$`next`
-    if (!is.null(next_url)){
-
+    if (!is.null(next_url)) {
       data <- api_to_dataframe(next_url, data)
     }
     return(data)
-
   } else {
     data <- payload
   }
 
 
   return(data)
-
 }
