@@ -18,7 +18,8 @@
 ##' @export
 ##' @examples
 ##'
-##' get_cwt_events()
+##' get_cwt_events(list(cwt_number=c(431655,431656,431657)))
+##' get_cwt_events(list(cwt_number_like="4316""))
 ##' get_cwt_events(list(lake="ON"))
 ##'
 get_cwt_events <- function(filter_list = list()) {

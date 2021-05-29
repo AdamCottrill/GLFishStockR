@@ -16,6 +16,11 @@ call an api endpoint.  If the api enpoint changes in the future,
 to update this value.  Note that the url string does \emph{NOT} include
 a trailing slash.
 }
+\details{
+To use a local version of fsdviz api during developement, set the
+local environment variable to True:\preformatted{>  Sys.setenv(FSDVIZ_DEV=TRUE)
+}
+}
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}
 }

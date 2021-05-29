@@ -25,12 +25,6 @@ stocking event.
 See http://fsis.glfc.com/api/docs/#v1-common--list
 for the full list of available filter keys (query parameters)
 }
-\examples{
-
-get_cwt_events()
-get_cwt_events(list(lake="ON"))
-
-}
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}
 }

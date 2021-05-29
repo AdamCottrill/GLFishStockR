@@ -5,12 +5,14 @@
 \title{Given a url submit the request and return the results as a
 dataframe.}
 \usage{
-api_to_dataframe(url, data = NULL)
+api_to_dataframe(url, data = NULL, page = 0)
 }
 \arguments{
 \item{url}{string}
 
 \item{data}{dataframe}
+
+\item{page}{number}
 }
 \value{
 dataframe
@@ -19,7 +21,11 @@ dataframe
 Given a url submit the request and return the results as a
 dataframe. If the response is paginated, the functions is called
 recursively until all of the pages have been loaded ($next is
-null) (this should have a limit on it some day.)
+null). A maximum of 10 requests are made.  If the maximum number
+of pages is reached, the function returns the data and issues a
+warning that there may be additional data and that the filters
+should be refined and multiple requests made and then combined to
+ensure that all of the records selected by the filter are returned.
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}
