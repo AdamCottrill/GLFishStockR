@@ -40,6 +40,6 @@ get_stocking_events <- function(filter_list = list()) {
     get_root_url(),
     query_string
   )
-  cat(my_url)
+
   return(api_to_dataframe(my_url, recursive = recursive))
 }

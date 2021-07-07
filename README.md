@@ -287,7 +287,6 @@ filters <- list(
   "first_year" = 2012
 )
 events <- get_stocking_events(filters)
-#> http://fsis.glfc.org/api/v1/stocking/events/?lake=HU&species=RBT,LAT,BNT&first_year=2012
 
 nrow(events)
 #> [1] 1552
