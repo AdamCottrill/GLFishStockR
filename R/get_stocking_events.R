@@ -1,6 +1,6 @@
 ##' Get stocking events from Great Lakes Fish Stocking API
 ##'
-##' This is one of the main funcitons in the GLFishStockR package.  It
+##' This is one of the main functions in the GLFishStockR package.  It
 ##' calls the api endpoint to retrieve stocking events
 ##' the Great Lakes Fish Stocking database
 ##' (www.fsis.glfc.org).  This function takes an
@@ -29,7 +29,6 @@ get_stocking_events <- function(filter_list = list()) {
         "Provide a list of filter values to select specific records."
       ))
     }
-
     recursive <- FALSE
   } else {
     recursive <- TRUE
@@ -41,5 +40,6 @@ get_stocking_events <- function(filter_list = list()) {
     get_root_url(),
     query_string
   )
+  cat(my_url)
   return(api_to_dataframe(my_url, recursive = recursive))
 }

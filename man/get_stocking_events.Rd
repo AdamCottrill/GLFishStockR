@@ -13,7 +13,7 @@ get_stocking_events(filter_list = list())
 dataframe
 }
 \description{
-This is one of the main funcitons in the GLFishStockR package.  It
+This is one of the main functions in the GLFishStockR package.  It
 calls the api endpoint to retrieve stocking events
 the Great Lakes Fish Stocking database
 (www.fsis.glfc.org).  This function takes an

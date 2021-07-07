@@ -19,8 +19,8 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 The package provides a number of low level functions that fetch data
-    from the Great Lakes fish stocking database for further analayis
-    and reporting in R..
+from the Great Lakes fish stocking database for further analayis
+and reporting in R.
 
 
 ## Example
@@ -36,70 +36,63 @@ associated management/spatial units.
 library(GLFishStockR)
 ## basic example code
 
-get_lakes();
-
-agencies <- get_agencies();
+get_lakes()
+agencies <- get_agencies()
 head(agencies)
 
-mus <- get_management_units();
+mus <- get_management_units()
 head(mus)
 
 filters <- list(
-  "lake"="MI"
+  "lake" = "MI"
 )
-mus <- get_management_units(filters);
+mus <- get_management_units(filters)
 head(mus)
 
-jurisdictions  <- get_jurisdictions()
+jurisdictions <- get_jurisdictions()
 head(jurisdictions)
 
 
 filters <- list(
-  "lake"="MI"
+  "lake" = "MI"
 )
-jurisdictions  <- get_jurisdictions(filters)
+jurisdictions <- get_jurisdictions(filters)
 head(jurisdictions)
 
 
-get_state_provinces();
-
-get_state_provinces(list("country"="USA"));
-
-head(get_grid10s(filters));
-
+get_state_provinces()
+get_state_provinces(list("country" = "USA"))
+head(get_grid10s(filters))
 ```
 
 We can get all of the species, strains and raw (detailed) strains too:
 
-
 ```{r species_and_strains}
 
-species <- get_species();
+species <- get_species()
 head(species)
 
-strains <- get_strains();
+strains <- get_strains()
 head(strains)
 
-raw_strains  <- get_raw_strains();
+raw_strains <- get_raw_strains()
 head(raw_strains)
-
 ```
 We can fetch all of the values used for lifestages, marks, and yearling equivalent factors:
 
 ```{r stocking_methods_and_lifestages}
 
-lifestages <- get_lifestages();
+lifestages <- get_lifestages()
 head(lifestages)
 
-marks <- get_marks();
+marks <- get_marks()
 head(marks)
 
-yreq <- get_yreq_factors();
+yreq <- get_yreq_factors()
 head(yreq)
 
-#we can get them for a single species or lifestage too
-get_yreq_factors(list(species="LAT"));
-
+# we can get them for a single species or lifestage too
+get_yreq_factors(list(species = "LAT"))
 ```
 
 We can get stocking events based on a large number of attributes
@@ -109,27 +102,25 @@ lifestage, stocking method, jursidiction, managment unit, or year.
 ```{r stocking_events]}
 
 filters <- list(
-  "lake"="HU",
-  "species"=c("RBT","LAT", "BNT"),
+  "lake" = "HU",
+  "species" = c("RBT", "LAT", "BNT"),
   "first_year" = 2012
 )
 events <- get_stocking_events(filters)
 
 nrow(events)
 head(events)
-
 ```
 
-We can also find stocking events that were associatd with spefic coded
+We can also find stocking events that were associatd with specific coded
 wire tags, tag attriutes, or attributes of the stocked fish or stocking
 event.
 
 ```{r cwts_events]}
-filters  <-  list(
-cwt_number='630157'
+filters <- list(
+  cwt_number = "630157"
 )
 
-cwt_events  <- get_cwt_events(filters)
+cwt_events <- get_cwt_events(filters)
 head(cwt_events)
-
 ```

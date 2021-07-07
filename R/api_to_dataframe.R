@@ -30,7 +30,7 @@ api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
       "The response from the server exceeded the maximum number of api calls and may be incomplete.\n",
       "Verify your filters and consider refining your selection. If you meant to fetch \n",
       "a large number of rows, it may be necessary to submit multiple requests with \n",
-      "different filters and combine them in R."
+      "different filters and combine the responses in R."
     ))
   }
 
@@ -43,6 +43,11 @@ api_to_dataframe <- function(url, data = NULL, page = 0, recursive = TRUE) {
 
     next_url <- payload$`next`
     if (!is.null(next_url) && page < maxPageCount && recursive) {
+      # Total hack until we get the fsis.glfc.org proxies figured out:
+      root_url <- get_root_url()
+      wrong_url <- "http://127.0.0.1:9999/api/v1"
+      next_url <- gsub(wrong_url, root_url, next_url)
+
       data <- api_to_dataframe(next_url, data, page)
     }
     return(data)

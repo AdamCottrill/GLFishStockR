@@ -5,7 +5,7 @@
 ##' Lakes Fish Stocking database (www.fsis.glfc.org). The get_marks()
 ##' function takes an optional filter list which can be used to return
 ##' marks of a particular type (chemical, physical, thermal, dye,
-##' uknown)
+##' unknown)
 ##'
 ##' See http://fsis.glfc.com/api/public_urls/#v1-common-marks-list for the full list of
 ##' available filter keys (query parameters)

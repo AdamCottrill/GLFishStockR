@@ -19,8 +19,8 @@ currently in the Great Lakes Fish Stocking database
 (www.fsis.glfc.org).  Yearling equivalent factors are used to
 adjust the number of fish stocked based on species and lifestage
 to account for younger life stages that are often stocked in high
-numbers but also suffer higher mortiality.  The yearling
-equivalent factor is intented to standardize the number of fished
+numbers but also suffer higher mortality.  The yearling
+equivalent factor is intended to standardize the number of fished
 stocked to the yearling lifestage. The
 get_yreq_factor() function takes an optional filter list which can be
 used to return factors for a particular species or life stages.

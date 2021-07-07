@@ -18,7 +18,7 @@ and calls the api endpoint to retrieve all of the 10-minute grids
 currently in the Great Lakes Fish Stocking database
 (www.fsis.glfc.org).  This function takes an
 optional filter list which can be used to return 10-minute grids
-associated with a particular lake, juristiction, or management unit.
+associated with a particular lake, jurisdiction, or management unit.
 }
 \details{
 See http://fsis.glfc.com/api/public_urls/#v1-common-grid10-list

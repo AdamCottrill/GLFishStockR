@@ -10,16 +10,15 @@ get_root_url()
 string
 }
 \description{
-This funciton gis intended to be used by all of the functions that
-call an api endpoint.  If the api enpoint changes in the future,
+This function gis intended to be used by all of the functions that
+call an api endpoint.  If the api endpoint changes in the future,
 (ie - the domain name changes or the version changes) we just need
 to update this value.  Note that the url string does \emph{NOT} include
 a trailing slash.
 }
 \details{
-To use a local version of fsdviz api during developement, set the
-local environment variable to True:\preformatted{>  Sys.setenv(FSDVIZ_DEV=TRUE)
-}
+To use a local version of fsdviz api during development, set the
+local environment variable to True:
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

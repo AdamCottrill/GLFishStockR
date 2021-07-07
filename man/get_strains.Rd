@@ -16,8 +16,8 @@ dataframe
 This function is a wrapper around api_to_dataframe and calls the
 api endpoint to retrieve all of the strains currently in the Great
 Lakes Fish Stocking database (www.fsis.glfc.org).  Strains is the
-high level group used to aggregrate detail strain information
-provided by the stocking agecies (see get_raw_strain() to access
+high level group used to aggregate detail strain information
+provided by the stocking agencies (see get_raw_strain() to access
 those values).  The get_strain() function takes an optional filter
 list which can be used to return strains associated with a
 particular species
