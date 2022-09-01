@@ -23,8 +23,15 @@ the first page of results are fetched from the api (and a warning
 is issued)
 }
 \details{
-See http://fsis.glfc.com/api/api/public_urls/#stocking-get_cwt_events-list
+See http://fsis.glfc.org/api/public_urls/#stocking-get_cwt_events-list
 for the full list of available filter keys (query parameters)
+}
+\examples{
+
+get_cwt_events(list(cwt_number=c(431655,431656,431657)))
+get_cwt_events(list(cwt_number_like="4316"))
+get_cwt_events(list(lake="ON"))
+
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}

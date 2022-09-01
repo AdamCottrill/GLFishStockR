@@ -15,9 +15,6 @@ knitr::opts_chunk$set(
 
 # GLFishStockR
 
-<!-- badges: start -->
-<!-- badges: end -->
-
 The package provides a number of low level functions that fetch data
 from the Great Lakes fish stocking database for further analayis
 and reporting in R.
@@ -59,11 +56,36 @@ filters <- list(
 jurisdictions <- get_jurisdictions(filters)
 head(jurisdictions)
 
-
 get_state_provinces()
 get_state_provinces(list("country" = "USA"))
 head(get_grid10s(filters))
+
 ```
+
+Most of the functions accept a list of filters that can be used to
+select the data that is returned from the Great Lakes Stocking
+Database.  The list forms a key-value pair that specified the filter
+to be applied and the value of the filter.
+
+A helper function ~show_filters()~ is included in the package that
+will display the names of the filterable endpoints, if no endpoint is
+provided, and provide all of the available filters if an valid
+endpoint is supplied:
+
+
+```{r show_filters }
+
+show_filters()
+
+show_filters("strain")
+
+show_filters("stocking_events", filter_like="clip")
+
+```
+
+
+
+
 
 We can get all of the species, strains and raw (detailed) strains too:
 

@@ -9,7 +9,7 @@
 ##' the first page of results are fetched from the api (and a warning
 ##' is issued)
 ##'
-##' See http://fsis.glfc.com/api/api/public_urls/#stocking-get_cwt_events-list
+##' See http://fsis.glfc.org/api/public_urls/#stocking-get_cwt_events-list
 ##' for the full list of available filter keys (query parameters)
 ##'
 ##' @param filter_list list
@@ -20,7 +20,7 @@
 ##' @examples
 ##'
 ##' get_cwt_events(list(cwt_number=c(431655,431656,431657)))
-##' get_cwt_events(list(cwt_number_like="4316""))
+##' get_cwt_events(list(cwt_number_like="4316"))
 ##' get_cwt_events(list(lake="ON"))
 ##'
 get_cwt_events <- function(filter_list = list()) {
@@ -36,7 +36,7 @@ get_cwt_events <- function(filter_list = list()) {
   } else {
     recursive <- TRUE
   }
-
+  check_filters("get_cwt_events", filter_list)
   query_string <- build_query_string(filter_list)
   my_url <- sprintf(
     "%s/stocking/get_cwt_events/%s",

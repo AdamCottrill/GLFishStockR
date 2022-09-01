@@ -8,7 +8,7 @@
 ##' associated with a particular lake, state/province, juristiction, or management
 ##' unit type (currently 'stat_dist' or 'qma').
 ##'
-##' See http://fsis.glfc.com/api/public_urls/#v1-common-management_unit-list
+##' See http://fsis.glfc.org/api/public_urls/#v1-common-management_unit-list
 ##' for the full list of
 ##' available filter keys (query parameters)
 ##'
@@ -24,6 +24,7 @@
 ##' get_grid10s(list(mu_type="stat_dist"))
 ##'
 get_management_units <- function(filter_list = list()) {
+  check_filters("management_unit", filter_list)
   query_string <- build_query_string(filter_list)
   my_url <- sprintf(
     "%s/common/management_unit/%s",

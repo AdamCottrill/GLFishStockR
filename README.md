@@ -1,25 +1,29 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+
+
 # GLFishStockR
 
-<!-- badges: start -->
-<!-- badges: end -->
-
 The package provides a number of low level functions that fetch data
-from the Great Lakes fish stocking database for further analayis and
-reporting in R.
+from the Great Lakes fish stocking database for further analayis
+and reporting in R.
+
 
 ## Example
 
 GLFishStocker provides a number of functions that can be use to fetch
 data from the Great Lakes Fish Stocking Database API (www.fsis.glfc.org)
 
-The functions in GLFishSocker expose methods that allow us to easily get
-data into R, including the lakes, contributing agencies, and associated
-management/spatial units.
+The functions in GLFishSocker expose methods that allow us to easily
+get data into R, including the lakes, contributing agencies, and
+associated management/spatial units.
 
-``` r
+
+```r
 library(GLFishStockR)
 ## basic example code
 
@@ -36,35 +40,51 @@ head(agencies)
 #>            abbrev                                        agency_name
 #> 1            CORA Chippewa-Ottawa Resource Authority, includes ITFAP
 #> 2 CORA-LTBB ODAWA                                    CORA-LTBB ODAWA
-#> 3             ESF                                                ESF
-#> 4            GLFC                   Great Lakes Fisheries Commission
-#> 5           ILDNR           Illinois Department of Natural Resources
-#> 6           INDNR            Indiana Department of Natural Resources
+#> 3            GLFC                   Great Lakes Fisheries Commission
+#> 4           ILDNR           Illinois Department of Natural Resources
+#> 5           INDNR            Indiana Department of Natural Resources
+#> 6             KBB                       Keweenaw Bay Band, Chippewas
 
 mus <- get_management_units()
 head(mus)
-#>   id label   mu_type              slug primary lake.abbrev lake.lake_name
-#> 1 16  MICH stat_dist er_stat_dist_mich    TRUE          ER      Lake Erie
-#> 2 38    NY stat_dist   er_stat_dist_ny    TRUE          ER      Lake Erie
-#> 3 39    O1 stat_dist   er_stat_dist_o1    TRUE          ER      Lake Erie
-#> 4 40    O2 stat_dist   er_stat_dist_o2    TRUE          ER      Lake Erie
-#> 5 41    O3 stat_dist   er_stat_dist_o3    TRUE          ER      Lake Erie
-#> 6 42   OE1 stat_dist  er_stat_dist_oe1    TRUE          ER      Lake Erie
+#>   id label                 description mu_type       slug primary lake.abbrev
+#> 1 75   4-1   main basin Ontario Waters     qma hu_qma_4-1   FALSE          HU
+#> 2 76   4-2   main basin Ontario Waters     qma hu_qma_4-2   FALSE          HU
+#> 3 77   4-3   main basin Ontario Waters     qma hu_qma_4-3   FALSE          HU
+#> 4 78   4-5   main basin Ontario Waters     qma hu_qma_4-5   FALSE          HU
+#> 5 79   5-1 Georgian Bay Ontario Waters     qma hu_qma_5-1   FALSE          HU
+#> 6 80   5-2 Georgian Bay Ontario Waters     qma hu_qma_5-2   FALSE          HU
+#>   lake.lake_name
+#> 1     Lake Huron
+#> 2     Lake Huron
+#> 3     Lake Huron
+#> 4     Lake Huron
+#> 5     Lake Huron
+#> 6     Lake Huron
 
 filters <- list(
   "lake" = "MI"
 )
 mus <- get_management_units(filters)
 head(mus)
-#>   id label   mu_type             slug primary lake.abbrev lake.lake_name
-#> 1  5   ILL stat_dist mi_stat_dist_ill    TRUE          MI  Lake Michigan
-#> 2  6   IND stat_dist mi_stat_dist_ind    TRUE          MI  Lake Michigan
-#> 3 17   MM1 stat_dist mi_stat_dist_mm1    TRUE          MI  Lake Michigan
-#> 4 18   MM2 stat_dist mi_stat_dist_mm2    TRUE          MI  Lake Michigan
-#> 5 19   MM3 stat_dist mi_stat_dist_mm3    TRUE          MI  Lake Michigan
-#> 6 21   MM4 stat_dist mi_stat_dist_mm4    TRUE          MI  Lake Michigan
+#>   id label     description   mu_type             slug primary lake.abbrev
+#> 1  5   ILL Illinois waters stat_dist mi_stat_dist_ill    TRUE          MI
+#> 2  6   IND  Indiana waters stat_dist mi_stat_dist_ind    TRUE          MI
+#> 3 17   MM1 Michigan waters stat_dist mi_stat_dist_mm1    TRUE          MI
+#> 4 18   MM2 Michigan waters stat_dist mi_stat_dist_mm2    TRUE          MI
+#> 5 19   MM3 Michigan waters stat_dist mi_stat_dist_mm3    TRUE          MI
+#> 6 21   MM4 Michigan waters stat_dist mi_stat_dist_mm4    TRUE          MI
+#>   lake.lake_name
+#> 1  Lake Michigan
+#> 2  Lake Michigan
+#> 3  Lake Michigan
+#> 4  Lake Michigan
+#> 5  Lake Michigan
+#> 6  Lake Michigan
 
 jurisdictions <- get_jurisdictions()
+#> Warning in refresh_filters(endpoint): Filters could not be found for the
+#> 'jursidiction' endpoint
 head(jurisdictions)
 #>   id  slug              name                      description lake.abbrev
 #> 1 28 er_mi     Erie-Michigan     Michigan waters of Lake Erie          ER
@@ -93,6 +113,10 @@ filters <- list(
   "lake" = "MI"
 )
 jurisdictions <- get_jurisdictions(filters)
+#> Warning in refresh_filters(endpoint): Filters could not be found for the
+#> 'jursidiction' endpoint
+#> Warning in check_filters("jursidiction", filter_list): Unknown filters provided. These will be ignored:
+#>  + lake
 head(jurisdictions)
 #>   id  slug               name                       description lake.abbrev
 #> 1 23 mi_il  Michigan-Illinois  Illinois waters of Lake Michigan          MI
@@ -109,7 +133,6 @@ head(jurisdictions)
 #> 2                      
 #> 3                      
 #> 4
-
 
 get_state_provinces()
 #>   id abbrev         name country description
@@ -149,9 +172,48 @@ head(get_grid10s(filters))
 #> 6          MI  Lake Michigan
 ```
 
+Most of the functions accept a list of filters that can be used to
+select the data that is returned from the Great Lakes Stocking
+Database.  The list forms a key-value pair that specified the filter
+to be applied and the value of the filter.
+
+A helper function ~show_filters()~ is included in the package that
+will display the names of the filterable endpoints, if no endpoint is
+provided, and provide all of the available filters if an valid
+endpoint is supplied:
+
+
+
+```r
+
+show_filters()
+#> An endpoint name needs to be provided. Currently avaliable endpoint names are:
+#>  [1] "grid10"              "jurisdiction"        "management_unit"    
+#>  [4] "mark"                "state_province"      "strain"             
+#>  [7] "strainraw"           "stocking_events"     "get_cwt_events"     
+#> [10] "yearling_equivalent"
+
+show_filters("strain")
+#>             name description
+#> 1    strain_code            
+#> 2 strain_species            
+#> 3        species
+
+show_filters("stocking_events", filter_like="clip")
+#>         name                                 description
+#> 39 clip_code Multiple values may be separated by commas.
+#> 40  finclips Multiple values may be separated by commas.
+```
+
+
+
+
+
 We can get all of the species, strains and raw (detailed) strains too:
 
-``` r
+
+```r
+
 species <- get_species()
 head(species)
 #>   abbrev     common_name          scientific_name species_code speciescommon
@@ -168,53 +230,53 @@ head(strains)
 #> 1 180         GDL            Grand Lake - ME ats-gdl                   ATS
 #> 2 151          GL Green Lake Atlantic Salmon  ats-gl                   ATS
 #> 3   1          GU                  Gullspang  ats-gu                   ATS
-#> 4 152         LCL          Little Clear Lake ats-lcl                   ATS
-#> 5 181         LHR               Lahave River ats-lhr                   ATS
-#> 6   2          LL                 Landlocked  ats-ll                   ATS
+#> 4 202         LCH             Lake Champlain lat-lch                   LAT
+#> 5 152         LCL          Little Clear Lake ats-lcl                   ATS
+#> 6 181         LHR               Lahave River ats-lhr                   ATS
 #>   strain_species.common_name strain_species.scientific_name
 #> 1            Atlantic Salmon                    Salmo salar
 #> 2            Atlantic Salmon                    Salmo salar
 #> 3            Atlantic Salmon                    Salmo salar
-#> 4            Atlantic Salmon                    Salmo salar
+#> 4                 Lake Trout           Salvelinus namaycush
 #> 5            Atlantic Salmon                    Salmo salar
 #> 6            Atlantic Salmon                    Salmo salar
 #>   strain_species.species_code strain_species.speciescommon
 #> 1                          77                   1230100401
 #> 2                          77                   1230100401
 #> 3                          77                   1230100401
-#> 4                          77                   1230100401
+#> 4                          81                   1230101098
 #> 5                          77                   1230100401
 #> 6                          77                   1230100401
 
 raw_strains <- get_raw_strains()
 head(raw_strains)
-#>    id raw_strain       description species.abbrev species.common_name
-#> 1 527        GDL   Grand Lake - ME            ATS     Atlantic Salmon
-#> 2   4        GLW      Undocumented            ATS     Atlantic Salmon
-#> 3 489 Green Lake        Green Lake            ATS     Atlantic Salmon
-#> 4 279         GU         Gullspang            ATS     Atlantic Salmon
-#> 5  11       LC-D      Undocumented            ATS     Atlantic Salmon
-#> 6 490        LCL Little Clear Lake            ATS     Atlantic Salmon
+#>    id      raw_strain     description species.abbrev species.common_name
+#> 1 582 Atlantic Salmon         Unknown            ATS     Atlantic Salmon
+#> 2 527             GDL Grand Lake - ME            ATS     Atlantic Salmon
+#> 3 620              GL      Green Lake            ATS     Atlantic Salmon
+#> 4   4             GLW    Undocumented            ATS     Atlantic Salmon
+#> 5 599             GRD      Grand Lake            ATS     Atlantic Salmon
+#> 6 621         GRD,PEN         Unknown            ATS     Atlantic Salmon
 #>   species.scientific_name species.species_code species.speciescommon strain.id
-#> 1             Salmo salar                   77            1230100401       180
-#> 2             Salmo salar                   77            1230100401         5
+#> 1             Salmo salar                   77            1230100401         5
+#> 2             Salmo salar                   77            1230100401       180
 #> 3             Salmo salar                   77            1230100401       151
-#> 4             Salmo salar                   77            1230100401         1
-#> 5             Salmo salar                   77            1230100401         5
-#> 6             Salmo salar                   77            1230100401       152
+#> 4             Salmo salar                   77            1230100401         5
+#> 5             Salmo salar                   77            1230100401       180
+#> 6             Salmo salar                   77            1230100401         5
 #>   strain.strain_code        strain.strain_label strain.slug
-#> 1                GDL            Grand Lake - ME     ats-gdl
-#> 2               UNKN                    Unknown    ats-unkn
+#> 1               UNKN                    Unknown    ats-unkn
+#> 2                GDL            Grand Lake - ME     ats-gdl
 #> 3                 GL Green Lake Atlantic Salmon      ats-gl
-#> 4                 GU                  Gullspang      ats-gu
-#> 5               UNKN                    Unknown    ats-unkn
-#> 6                LCL          Little Clear Lake     ats-lcl
+#> 4               UNKN                    Unknown    ats-unkn
+#> 5                GDL            Grand Lake - ME     ats-gdl
+#> 6               UNKN                    Unknown    ats-unkn
 ```
+We can fetch all of the values used for lifestages, marks, and yearling equivalent factors:
 
-We can fetch all of the values used for lifestages, marks, and yearling
-equivalent factors:
 
-``` r
+```r
+
 lifestages <- get_lifestages()
 head(lifestages)
 #>   abbrev              description
@@ -277,10 +339,12 @@ get_yreq_factors(list(species = "LAT"))
 ```
 
 We can get stocking events based on a large number of attributes
-including (but not limited to lake, species, strain, agency, lifestage,
-stocking method, jursidiction, managment unit, or year.
+including (but not limited to lake, species, strain, agency,
+lifestage, stocking method, jursidiction, managment unit, or year.
 
-``` r
+
+```r
+
 filters <- list(
   "lake" = "HU",
   "species" = c("RBT", "LAT", "BNT"),
@@ -289,50 +353,50 @@ filters <- list(
 events <- get_stocking_events(filters)
 
 nrow(events)
-#> [1] 1552
+#> [1] 1613
 head(events)
-#>    stock_id day month year             site   st_site
-#> 1 202195316  25     3 2020   Au Sable River  Rea Road
-#> 2 202195317  25     3 2020     Pigeon River Caseville
-#> 3 202195318  25     3 2020      Port Austin          
-#> 4 202195319   6     4 2020 Lexington Harbor          
-#> 5 202195320   6     4 2020 Lexington Harbor          
-#> 6 202195321   7     4 2020     Port Sanilac          
+#>   stock_id day month year             site          st_site
+#> 1 20220075  15     4 2021 Lexington Harbor Lexington Harbor
+#> 2 20220252  18     5 2021           Detour                 
+#> 3 20220253  18     5 2021           Detour                 
+#> 4 20220254  23     4 2021       Bois Blanc      Reef Summit
+#> 5 20220255  24     4 2021      Adams Point                 
+#> 6 20220256  23     4 2021       Bois Blanc      Reef Summit
 #>                                               geom no_stocked year_class
-#> 1 SRID=4326;POINT (-83.43431150000001 44.43601841)      37709       2019
-#> 2       SRID=4326;POINT (-83.27685244 43.94467393)       6280       2019
-#> 3 SRID=4326;POINT (-83.00295515000001 44.04725248)      10000       2019
-#> 4 SRID=4326;POINT (-82.52659482999999 43.26750588)      15000       2019
-#> 5 SRID=4326;POINT (-82.52659482999999 43.26750588)      15000       2019
-#> 6        SRID=4326;POINT (-82.53876323 43.4306125)      15000       2019
+#> 1 SRID=4326;POINT (-82.52659482999999 43.26750588)      30000       2020
+#> 2     SRID=4326;POINT (-83.90000000000001 45.8669)      40010       2020
+#> 3     SRID=4326;POINT (-83.90000000000001 45.8669)      39982       2020
+#> 4               SRID=4326;POINT (-84.4181 45.8177)      68009       2020
+#> 5        SRID=4326;POINT (-83.65000000000001 45.5)      69385       2020
+#> 6               SRID=4326;POINT (-84.4181 45.8177)      69538       2020
 #>   agemonth tag_no mark yreq_stocked agency.abbrev
-#> 1       12   <NA>   NA        37709         MIDNR
-#> 2       12   <NA>   NA         6280         MIDNR
-#> 3       12   <NA>   NA        10000         MIDNR
-#> 4       15   <NA>   NA        15000         MIDNR
-#> 5       15   <NA>   NA        15000         MIDNR
-#> 6       15   <NA>   NA        15000         MIDNR
+#> 1       15   <NA>   NA        30000         MIDNR
+#> 2       17 641293   NA        40010         USFWS
+#> 3       17 641341   NA        39982         USFWS
+#> 4       16 641319   NA        68009         USFWS
+#> 5       16 641321   NA        69385         USFWS
+#> 6       16 641315   NA        69538         USFWS
 #>                         agency.agency_name condition.condition
 #> 1 Michigan Department of Natural Resources                   1
-#> 2 Michigan Department of Natural Resources                   1
-#> 3 Michigan Department of Natural Resources                   1
-#> 4 Michigan Department of Natural Resources                   1
-#> 5 Michigan Department of Natural Resources                   1
-#> 6 Michigan Department of Natural Resources                   1
+#> 2           U.S. Fish and Wildlife Service                   1
+#> 3           U.S. Fish and Wildlife Service                   1
+#> 4           U.S. Fish and Wildlife Service                   1
+#> 5           U.S. Fish and Wildlife Service                   1
+#> 6           U.S. Fish and Wildlife Service                   1
 #>                 condition.description grid_10.id grid_10.grid
-#> 1 <1% mortality observed, "excellent"         53         1210
-#> 2 <1% mortality observed, "excellent"         80         1410
-#> 3 <1% mortality observed, "excellent"         81         1411
-#> 4 <1% mortality observed, "excellent"        126         1915
-#> 5 <1% mortality observed, "excellent"        126         1915
-#> 6 <1% mortality observed, "excellent"        120         1814
+#> 1 <1% mortality observed, "excellent"        126         1915
+#> 2 <1% mortality observed, "excellent"        156          306
+#> 3 <1% mortality observed, "excellent"        156          306
+#> 4 <1% mortality observed, "excellent"        178          403
+#> 5 <1% mortality observed, "excellent"        226          608
+#> 6 <1% mortality observed, "excellent"        178          403
 #>                                         grid_10.centroid grid_10.slug
-#> 1 SRID=4326;POINT (-83.24665090962264 44.41519340089862)      hu_1210
-#> 2 SRID=4326;POINT (-83.25589978733422 44.06105191142154)      hu_1410
-#> 3 SRID=4326;POINT (-83.08895178523181 44.08726792065985)      hu_1411
-#> 4 SRID=4326;POINT (-82.42790326846431 43.25209597110957)      hu_1915
-#> 5 SRID=4326;POINT (-82.42790326846431 43.25209597110957)      hu_1915
-#> 6  SRID=4326;POINT (-82.5226771769556 43.42659056835012)      hu_1814
+#> 1 SRID=4326;POINT (-82.42790326846431 43.25209597110957)      hu_1915
+#> 2 SRID=4326;POINT (-83.91524345779918 45.90396859168997)       hu_306
+#> 3 SRID=4326;POINT (-83.91524345779918 45.90396859168997)       hu_306
+#> 4 SRID=4326;POINT (-84.40808691659738 45.73980324819702)       hu_403
+#> 5 SRID=4326;POINT (-83.58011249322665 45.42859111583507)       hu_608
+#> 6 SRID=4326;POINT (-84.40808691659738 45.73980324819702)       hu_403
 #>   grid_10.lake.abbrev grid_10.lake.lake_name latlong_flag.value
 #> 1                  HU             Lake Huron                  1
 #> 2                  HU             Lake Huron                  1
@@ -349,25 +413,25 @@ head(events)
 #> 6                 Reported                y       yearling, age-1
 #>   species.abbrev species.common_name species.scientific_name
 #> 1            RBT       Rainbow Trout     Oncorhynchus mykiss
-#> 2            RBT       Rainbow Trout     Oncorhynchus mykiss
-#> 3            RBT       Rainbow Trout     Oncorhynchus mykiss
-#> 4            RBT       Rainbow Trout     Oncorhynchus mykiss
-#> 5            RBT       Rainbow Trout     Oncorhynchus mykiss
-#> 6            RBT       Rainbow Trout     Oncorhynchus mykiss
+#> 2            LAT          Lake Trout    Salvelinus namaycush
+#> 3            LAT          Lake Trout    Salvelinus namaycush
+#> 4            LAT          Lake Trout    Salvelinus namaycush
+#> 5            LAT          Lake Trout    Salvelinus namaycush
+#> 6            LAT          Lake Trout    Salvelinus namaycush
 #>   species.species_code species.speciescommon stocking_method.stk_meth
-#> 1                   76            1230100909                        i
-#> 2                   76            1230100909                        s
-#> 3                   76            1230100909                        s
-#> 4                   76            1230100909                        s
-#> 5                   76            1230100909                        s
-#> 6                   76            1230100909                        s
+#> 1                   76            1230100909                        s
+#> 2                   81            1230101098                        b
+#> 3                   81            1230101098                        b
+#> 4                   81            1230101098                        b
+#> 5                   81            1230101098                        b
+#> 6                   81            1230101098                        b
 #>               stocking_method.description jurisdiction.id jurisdiction.slug
-#> 1        inshore stocking, up tributaries              27             hu_mi
-#> 2 shore stocking (truck, atv, snowmobile)              27             hu_mi
-#> 3 shore stocking (truck, atv, snowmobile)              27             hu_mi
-#> 4 shore stocking (truck, atv, snowmobile)              27             hu_mi
-#> 5 shore stocking (truck, atv, snowmobile)              27             hu_mi
-#> 6 shore stocking (truck, atv, snowmobile)              27             hu_mi
+#> 1 shore stocking (truck, atv, snowmobile)              27             hu_mi
+#> 2                 boat, offshore stocking              27             hu_mi
+#> 3                 boat, offshore stocking              27             hu_mi
+#> 4                 boat, offshore stocking              27             hu_mi
+#> 5                 boat, offshore stocking              27             hu_mi
+#> 6                 boat, offshore stocking              27             hu_mi
 #>   jurisdiction.name      jurisdiction.description jurisdiction.lake.abbrev
 #> 1    Huron-Michigan Michigan waters of Lake Huron                       HU
 #> 2    Huron-Michigan Michigan waters of Lake Huron                       HU
@@ -402,7 +466,8 @@ We can also find stocking events that were associatd with specific coded
 wire tags, tag attriutes, or attributes of the stocked fish or stocking
 event.
 
-``` r
+
+```r
 filters <- list(
   cwt_number = "630157"
 )
@@ -430,25 +495,25 @@ head(cwt_events)
 #> 4             False 20196157           12691        OMNR   HU    ON  hu_on
 #> 5             False 20196158           12695        OMNR   HU    ON  hu_on
 #> 6             False 20196159           12696        OMNR   HU    ON  hu_on
-#>   man_unit grid10     primary_location secondary_location latitude longitude
-#> 1      GB4   1124 Owen Sound East Wall                 NA  44.5789 -80.93954
-#> 2      GB4   1124 Owen Sound East Wall                 NA  44.5789 -80.93954
-#> 3      GB4   1124 Owen Sound East Wall                 NA  44.5789 -80.93954
-#> 4      GB4   1124  Os Harbour-Goodyear                 NA  44.6016  -80.9208
-#> 5      GB4   1124  Os Harbour-Goodyear                 NA  44.6016  -80.9208
-#> 6      GB4   1124 Owen Sound East Wall                 NA  44.5789 -80.93954
-#>   year month day spc                  strain year_class mark clipcode
-#> 1 2006     2  10 LAT             Seneca Lake       2001   NA       AD
-#> 2 2006     2  10 LAT             Seneca Lake       2002   NA       AD
-#> 3 2006     2  10 LAT             Seneca Lake       2003   NA       AD
-#> 4 2006     2  27 LAT    Huron - Iroquois Bay       2001   NA       AD
-#> 5 2006     2  27 LAT    Huron - Iroquois Bay       2002   NA       AD
-#> 6 2006     1   6 LAT Superior - Slate Island       2005   NA       AD
-#>            stage                               method no_stocked
-#> 1 age-2 or older truck, onshore or nearshore stocking        267
-#> 2 age-2 or older truck, onshore or nearshore stocking        311
-#> 3 age-2 or older truck, onshore or nearshore stocking        358
-#> 4 age-2 or older truck, onshore or nearshore stocking        402
-#> 5 age-2 or older truck, onshore or nearshore stocking        279
-#> 6 age-2 or older truck, onshore or nearshore stocking        638
+#>   man_unit grid10 primary_location   secondary_location latitude longitude year
+#> 1      GB4   1124       Owen Sound Owen Sound East Wall  44.5789 -80.93954 2006
+#> 2      GB4   1124       Owen Sound Owen Sound East Wall  44.5789 -80.93954 2006
+#> 3      GB4   1124       Owen Sound Owen Sound East Wall  44.5789 -80.93954 2006
+#> 4      GB4   1124       Owen Sound  Os Harbour-Goodyear  44.6016  -80.9208 2006
+#> 5      GB4   1124       Owen Sound  Os Harbour-Goodyear  44.6016  -80.9208 2006
+#> 6      GB4   1124       Owen Sound Owen Sound East Wall  44.5789 -80.93954 2006
+#>   month day spc                  strain year_class mark clipcode          stage
+#> 1     2  10 LAT             Seneca Lake       2001   NA       AD age-2 or older
+#> 2     2  10 LAT             Seneca Lake       2002   NA       AD age-2 or older
+#> 3     2  10 LAT             Seneca Lake       2003   NA       AD age-2 or older
+#> 4     2  27 LAT    Huron - Iroquois Bay       2001   NA       AD age-2 or older
+#> 5     2  27 LAT    Huron - Iroquois Bay       2002   NA       AD age-2 or older
+#> 6     1   6 LAT Superior - Slate Island       2004   NA       AD age-2 or older
+#>    method no_stocked event_tag_numbers
+#> 1 unknown        267            630157
+#> 2 unknown        311            630157
+#> 3 unknown        358            630157
+#> 4 unknown        402            630157
+#> 5 unknown        279            630157
+#> 6 unknown        638            630157
 ```

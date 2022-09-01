@@ -22,12 +22,12 @@ based on several attributes of the
 stocking event such as species, lake, agency, first year, as last year.
 }
 \details{
-See http://fsis.glfc.com/api/public_urls/#v1-stocking-event-list
+See http://fsis.glfc.org/api/public_urls/stocking-event-list
 for the full list of available filter keys (query parameters)
 }
 \examples{
 
-get_cwt_events(list(lake="ON", species=c('BNT', 'RBT')))
+events <- get_stocking_events(list(lake="ON", year=2012, species=c('BNT', 'RBT')))
 
 }
 \author{

@@ -1,3 +1,5 @@
 ^LICENSE\.md$
 ^README\.Rmd$
 .vscode
+sandbox.R
+sandbox/*

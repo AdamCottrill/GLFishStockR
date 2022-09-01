@@ -22,7 +22,7 @@ associated with a particular lake, state/province, juristiction, or management
 unit type (currently 'stat_dist' or 'qma').
 }
 \details{
-See http://fsis.glfc.com/api/public_urls/#v1-common-management_unit-list
+See http://fsis.glfc.org/api/public_urls/#v1-common-management_unit-list
 for the full list of
 available filter keys (query parameters)
 }

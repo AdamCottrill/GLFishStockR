@@ -7,7 +7,7 @@
 ##' optional filter list which can be used to return 10-minute grids
 ##' associated with a particular lake, jurisdiction, or management unit.
 ##'
-##' See http://fsis.glfc.com/api/public_urls/#v1-common-grid10-list
+##' See http://fsis.glfc.org/api/public_urls/#v1-common-grid10-list
 ##' for the full list of available filter keys (query parameters)
 ##'
 ##' @param filter_list list
@@ -22,6 +22,7 @@
 ##' get_grid10s(list(mu_type="stat_dist"))
 ##'
 get_grid10s <- function(filter_list = list()) {
+  check_filters("grid10", filter_list)
   query_string <- build_query_string(filter_list)
   my_url <- sprintf(
     "%s/common/grid10/%s",

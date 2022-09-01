@@ -21,7 +21,7 @@ marks of a particular type (chemical, physical, thermal, dye,
 unknown)
 }
 \details{
-See http://fsis.glfc.com/api/public_urls/#v1-common-marks-list for the full list of
+See http://fsis.glfc.org/api/public_urls/#v1-common-marks-list for the full list of
 available filter keys (query parameters)
 }
 \examples{

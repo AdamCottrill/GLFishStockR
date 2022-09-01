@@ -9,7 +9,7 @@
 ##' optional filter list which can be used to return jurisdictions
 ##' associated with a particular lake or state/province.
 ##'
-##' See http://fsis.glfc.com/api/public_urls/#v1-common-jurisdiction-list for
+##' See http://fsis.glfc.org/api/public_urls/#v1-common-jurisdiction-list for
 ##' the full list of available filter keys (query parameters)
 ##'
 ##' @param filter_list list
@@ -25,6 +25,7 @@
 ##'
 get_jurisdictions <- function(filter_list = list()) {
   #
+  check_filters("jursidiction", filter_list)
   query_string <- build_query_string(filter_list)
 
   my_url <- sprintf(

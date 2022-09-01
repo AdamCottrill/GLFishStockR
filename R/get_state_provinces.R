@@ -18,6 +18,7 @@
 ##' get_state_provinces(list(country="CA"))
 ##'
 get_state_provinces <- function(filter_list = list()) {
+  check_filters("state_province", filter_list)
   query_string <- build_query_string(filter_list)
   my_url <- sprintf(
     "%s/common/state_province/%s",

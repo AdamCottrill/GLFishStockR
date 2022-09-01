@@ -21,7 +21,7 @@ optional filter list which can be used to return 10-minute grids
 associated with a particular lake, jurisdiction, or management unit.
 }
 \details{
-See http://fsis.glfc.com/api/public_urls/#v1-common-grid10-list
+See http://fsis.glfc.org/api/public_urls/#v1-common-grid10-list
 for the full list of available filter keys (query parameters)
 }
 \examples{

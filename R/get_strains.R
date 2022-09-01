@@ -9,7 +9,7 @@
 ##' list which can be used to return strains associated with a
 ##' particular species
 ##'
-##' See http://fsis.glfc.com/api/public_urls/#v1-common-strains-list
+##' See http://fsis.glfc.org/api/public_urls/#v1-common-strains-list
 ##' for the full list of available filter keys (query parameters)
 ##'
 ##' @param filter_list list
@@ -23,6 +23,7 @@
 ##' get_strains(list(species="LAT"))
 
 get_strains <- function(filter_list = list()) {
+  check_filters("strain", filter_list)
   query_string <- build_query_string(filter_list)
   my_url <- sprintf(
     "%s/common/strain/%s",

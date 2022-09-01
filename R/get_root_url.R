@@ -7,8 +7,9 @@
 ##' a trailing slash.
 ##'
 ##' To use a local version of fsdviz api during development, set the
-##' local environment variable to True:
+##' local environment variable FSDVIZ_DEV to True:
 ##'
+##' ~Sys.setenv(FSDVIZ_DEV=TRUE)~
 ##'
 ##' @author Adam Cottrill \email{adam.cottrill@@ontario.ca}
 ##' @return string
