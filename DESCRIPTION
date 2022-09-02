@@ -1,6 +1,6 @@
-tPackage: GLFishStockR
+Package: GLFishStockR
 Title: Fetch Data From The Great Lakes Fish Stocking API
-Version: 2022.9.1
+Version: 2022.09.02
 Authors@R:
     person("Adam","Cottrill", email = "adam.cottrill.@ontario.ca", role = c("aut", "cre"))
 Maintainer: Adam Cottrill <adam.cottrill@ontario.ca>

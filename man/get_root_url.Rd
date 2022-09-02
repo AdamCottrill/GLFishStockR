@@ -19,6 +19,8 @@ a trailing slash.
 \details{
 To use a local version of fsdviz api during development, set the
 local environment variable FSDVIZ_DEV to True:
+
+~Sys.setenv(FSDVIZ_DEV=TRUE)~
 }
 \author{
 Adam Cottrill \email{adam.cottrill@ontario.ca}
